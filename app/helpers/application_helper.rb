@@ -20,7 +20,7 @@ module ApplicationHelper
   # and updater links correctly.
   #
   def api_user_url(api_user_id)
-    "#{SOA_API_URL}/#{Api.version_for :api_user}/api_users/#{api_user_id || 0}"
+    "#{OCEAN_API_URL}/#{Api.version_for :api_user}/api_users/#{api_user_id || 0}"
   end
 
 end
