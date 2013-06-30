@@ -17,7 +17,3 @@ group :test, :development do
   gem "immigrant"
   gem "annotate", ">=2.5.0"
 end
-
-# Rails 3 compatibility
-gem "protected_attributes"
-gem "rails-observers"

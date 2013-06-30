@@ -83,8 +83,8 @@ GEM
     multipart-post (1.2.0)
     net-purge (0.1.0)
     polyglot (0.3.3)
-    protected_attributes (1.0.2)
-      activemodel (>= 4.0.0.beta, < 5.0)
+    protected_attributes (1.0.3)
+      activemodel (>= 4.0.0, < 5.0)
     rack (1.5.2)
     rack-attack (2.2.0)
       rack
@@ -153,9 +153,7 @@ DEPENDENCIES
   immigrant
   jbuilder
   ocean!
-  protected_attributes
   rails (= 4.0.0)
-  rails-observers
   redis (~> 3.0.1)
   rspec-rails (~> 2.0)
   simplecov
