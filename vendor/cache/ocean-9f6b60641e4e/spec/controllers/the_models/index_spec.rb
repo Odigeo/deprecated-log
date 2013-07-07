@@ -1,56 +1,64 @@
 require 'spec_helper'
 
-describe LogExcerptsController do
+describe TheModelsController do
   
-  describe "GET" do
+  render_views
+
+  describe "INDEX" do
     
     before :each do
       Api.stub(:permitted?).and_return(double(:status => 200, 
                                                :body => {'authentication' => {'user_id' => 123}}))
+      create :the_model
+      create :the_model
+      create :the_model
       request.headers['HTTP_ACCEPT'] = "application/json"
-      request.headers['X-API-Token'] = "totally-fake"
+      request.headers['X-API-Token'] = "boy-is-this-fake"
     end
 
     
     it "should return JSON" do
-      $redis.should_receive(:zcount).once.and_return(0)
-      $redis.should_receive(:zrangebyscore).once.and_return([])
-      get :show, from: 0, to: 1000000000
+      get :index
       response.content_type.should == "application/json"
     end
     
     it "should return a 400 if the X-API-Token header is missing" do
-      $redis.should_not_receive(:zcount)
-      $redis.should_not_receive(:zrangebyscore)
       request.headers['X-API-Token'] = nil
-      get :show, from: 0, to: 1000000000
+      get :index
       response.status.should == 400
       response.content_type.should == "application/json"
     end
     
     it "should return a 400 if the authentication represented by the X-API-Token can't be found" do
-      $redis.should_not_receive(:zcount)
-      $redis.should_not_receive(:zrangebyscore)
       request.headers['X-API-Token'] = 'unknown, matey'
       Api.stub(:permitted?).and_return(double(:status => 400, :body => {:_api_error => []}))
-      get :show, from: 0, to: 1000000000
+      get :index
       response.status.should == 400
       response.content_type.should == "application/json"
     end
-
-    it "should return a 403 if the X-API-Token doesn't yield GET authorisation" do
-      $redis.should_not_receive(:zcount)
-      $redis.should_not_receive(:zrangebyscore)
+    
+    it "should return a 403 if the X-API-Token doesn't yield GET authorisation for TheModels" do
       Api.stub(:permitted?).and_return(double(:status => 403, :body => {:_api_error => []}))
-      get :show, from: 0, to: 1000000000
+      get :index
       response.status.should == 403
       response.content_type.should == "application/json"
     end
         
     it "should return a 200 when successful" do
-      $redis.should_receive(:zcount).once.and_return(0)
-      $redis.should_receive(:zrangebyscore).once.and_return([])
-      get :show, from: 0, to: 1000000000
+      get :index
+      response.status.should == 200
+      response.should render_template(partial: "_the_model", count: 3)
+    end
+
+    it "should accept match and search parameters" do
+      TheModel.should_receive(:index).with(anything, nil, 'ue').and_return([])
+      get :index, app: 'foo', search: 'ue'
+      response.status.should == 200
+    end
+    
+    it "should accept a group parameter" do
+      TheModel.should_receive(:index).with(anything, 'name', nil).and_return([])
+      get :index, app: 'foo', group: :name
       response.status.should == 200
     end
     
