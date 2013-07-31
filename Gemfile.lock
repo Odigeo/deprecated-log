@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/OceanDev/ocean.git
-  revision: ab8158f17d9d50a0b03bb4c4c80768984cdb4a96
+  revision: 9ab72fcbaa9176489d5f356f0d0959fba5065e0f
   specs:
-    ocean (1.8.0)
+    ocean (1.8.2)
       faraday
       faraday_middleware
       ffi-rzmq
@@ -54,8 +54,8 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
-    faraday (0.8.7)
-      multipart-post (~> 1.1)
+    faraday (0.8.8)
+      multipart-post (~> 1.2.0)
     faraday_middleware (0.9.0)
       faraday (>= 0.7.4, < 0.9)
     ffi (1.9.0)
@@ -69,7 +69,7 @@ GEM
     immigrant (0.1.4)
       activerecord (>= 3.0)
       foreigner (>= 1.2.1)
-    jbuilder (1.4.2)
+    jbuilder (1.5.0)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
     mail (2.5.4)
@@ -104,7 +104,7 @@ GEM
     rspec-core (2.14.4)
     rspec-expectations (2.14.0)
       diff-lcs (>= 1.1.3, < 2.0)
-    rspec-mocks (2.14.1)
+    rspec-mocks (2.14.2)
     rspec-rails (2.14.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
