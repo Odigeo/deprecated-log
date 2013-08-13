@@ -2,6 +2,10 @@
 require 'redis'
 require 'json'
 
+#
+# This class overloads the ZeroLog#pull_worker to store received
+# data in Redis.
+#
 class ZeroLogToRedis < ZeroLog
 
   def pull_worker(address=PUSH_ADDRESS)
