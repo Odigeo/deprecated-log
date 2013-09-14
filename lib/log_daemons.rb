@@ -22,7 +22,7 @@ IPC_PULL_SERVER_SOCKET_PATH = "ipc://#{RUN_TIME_DIR}/pull_worker.ipc"
 
 options = {
   dir_mode: :normal,
-  dir: "/var/run/zeromq_logger",
+  dir: RUN_TIME_DIR,
   backtrace: true,
   log_output: false,
   multiple: false,

@@ -14,6 +14,5 @@ group :test, :development do
   gem "rspec-rails", "~> 2.0"
   gem "simplecov", :require => false
   gem "factory_girl_rails", "~> 4.0"
-  gem "immigrant"
   gem "annotate", ">=2.5.0"
 end
