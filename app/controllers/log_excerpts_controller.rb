@@ -34,5 +34,34 @@ class LogExcerptsController < ApplicationController
     $redis.zremrangebyscore "log", "(#{@from}", @to
     render_head_204
   end
+
+
+  def create
+    # Check that all mandatory parameters are present
+    errors = {}
+    ["timestamp", "ip", "pid", "service", "level", "msg"].each do |param|
+      errors[param] = ["must be present"] unless params[param]
+    end
+    ["timestamp", "pid", "level"].each do |param|
+      next if params[param].to_i.to_s == params[param]
+      errors[param] ||= []
+      errors[param] << "must be an integer"
+    end
+    ["ip", "service", "msg"].each do |param|
+      next if params[param].is_a?(String)
+      errors[param] ||= []
+      errors[param] << "must be a string"
+    end
+    render json: errors, status: 422 and return unless errors.blank?
+    # Create an entry in Redis
+    timestamp = params['timestamp'] = params['timestamp'].to_i
+    params.delete("controller")
+    params.delete("action")
+    params['pid'] = params['pid'].to_i
+    params['level'] = params['level'].to_i
+    $redis.zadd "log", timestamp, params.to_json
+    # Return a 204 (HEAD)
+    render_head_204
+  end
   
 end
