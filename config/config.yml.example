@@ -32,7 +32,7 @@ LOAD_BALANCERS: []
 LOG_HOSTS: []
 
 # This is the host used by the Log service to store all received log data
-LOG_REDIS_NODE: 127.0.0.1
+LOG_REDIS_NODE: master-log-redis.odigeoservices.com
 
 
 ##########################################################################################
