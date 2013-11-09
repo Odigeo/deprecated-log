@@ -6,7 +6,6 @@
 require 'rubygems'
 require 'daemons'
 require 'ffi-rzmq'
-#load 'lib/zero_log.rb'
 load 'config/initializers/log_redis_node.rb'
 load 'lib/zero_log_to_redis.rb'
 
