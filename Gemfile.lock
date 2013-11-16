@@ -154,7 +154,6 @@ DEPENDENCIES
   jbuilder
   ocean-rails (~> 1.0)
   rails (= 4.0.0)
-  rake
   redis (~> 3.0.1)
   rspec-rails (~> 2.0)
   simplecov
