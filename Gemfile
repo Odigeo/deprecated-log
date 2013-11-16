@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+gem "rake"
+
 gem "rails", "4.0.0"
 gem "ocean-rails", "~> 1.0"
 
