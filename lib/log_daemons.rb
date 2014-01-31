@@ -2,6 +2,16 @@
 # The directory RUN_TIME_DIR must already exist, and this process
 # must have the right to create files in it.
 #
+# To start the log workers (from the Rails app dir):
+#    bundle exec ruby lib/log_daemons.rb start
+#
+# To stop them:
+#    bundle exec ruby lib/log_daemons.rb stop
+#
+# To run one in the console:
+#    bundle exec ruby lib/log_daemons.rb run
+#
+#
 
 require 'rubygems'
 require 'daemons'

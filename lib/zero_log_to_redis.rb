@@ -1,6 +1,15 @@
 
+require 'rubygems'
 require 'redis'
 require 'json'
+require 'ffi-rzmq'
+require 'yaml'
+require 'erb'
+require "ocean/zero_log"
+
+
+cfg = YAML.load(ERB.new(File.read("config/config.yml")).result)
+LOG_REDIS_NODE = cfg['LOG_REDIS_NODE']
 
 #
 # This class overloads the ZeroLog#pull_worker to store received
