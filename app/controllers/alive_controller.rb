@@ -11,8 +11,6 @@ class AliveController < ApplicationController
 
 
   def index
-    # Call the DB to ensure it too is healthy
-    $redis.zcard 'log'
     # Render the reply
     render :text => "ALIVE", :status => 200
   end
