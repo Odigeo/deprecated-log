@@ -40,17 +40,17 @@ options = {
 
 # The pull server, one per machine instance
 Daemons.run_proc("server", options) do
-  ZeroLog.new.pull_server(IPC_PULL_SERVER_SOCKET_PATH)
+  ZeroLog.new("sub_push", []))pull_server(IPC_PULL_SERVER_SOCKET_PATH)
 end
 
 # The log workers
 (0...N_WORKERS).each do |i| 
   Daemons.run_proc("worker_#{i}", options) do
-    ZeroLogToRedis.new.pull_worker(IPC_PULL_SERVER_SOCKET_PATH)
+    ZeroLogToRedis.new("sub_push", []).pull_worker(IPC_PULL_SERVER_SOCKET_PATH)
   end
 end
 
 # A daemon to remove log entries older than a month (one per machine instance)
 Daemons.run_proc("purger", options) do
-  ZeroLogToRedis.new.purger
+  ZeroLogToRedis.new("sub_push", []).purger
 end
