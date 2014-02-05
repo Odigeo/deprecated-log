@@ -40,7 +40,7 @@ options = {
 
 # The pull server, one per machine instance
 Daemons.run_proc("server", options) do
-  ZeroLog.new("sub_push", [])pull_server(IPC_PULL_SERVER_SOCKET_PATH)
+  ZeroLog.new("sub_push", []).pull_server(IPC_PULL_SERVER_SOCKET_PATH)
 end
 
 # The log workers
