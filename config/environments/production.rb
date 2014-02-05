@@ -1,4 +1,4 @@
-Rails.logger = ZeromqLogger.new
+#Rails.logger = ZeromqLogger.new
 
 Log::Application.configure do
   # We don't want to see view render lines in production.
