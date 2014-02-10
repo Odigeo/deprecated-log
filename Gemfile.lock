@@ -154,7 +154,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   hiredis (~> 0.4.5)
   jbuilder
-  ocean-rails (>= 1.29.7)
+  ocean-rails (>= 1.29.8)
   rails (~> 4.0)
   redis (~> 3.0.1)
   rspec-rails (~> 2.0)
