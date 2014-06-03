@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 gem 'rails', '~> 4.1.0'
-gem "ocean-rails", "= 2.11.2"  # 1.x series of ffi-rzmq
+gem "ocean-rails"
 
 gem "jbuilder"
 gem 'oj'
