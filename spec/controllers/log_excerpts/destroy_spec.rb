@@ -13,35 +13,35 @@ describe LogExcerptsController do
     
     it "should return JSON" do
       delete :destroy, from: 0, to: 100000000
-      response.content_type.should == "application/json"
+      expect(response.content_type).to eq("application/json")
     end
 
     it "should return a 400 if the X-API-Token header is missing" do
-      Api.stub(:permitted?).and_return(double(:status => 400, :body => {:_api_error => []}))
+      allow(Api).to receive(:permitted?).and_return(double(:status => 400, :body => {:_api_error => []}))
       request.headers['X-API-Token'] = nil
       delete :destroy, from: 0, to: 100000000
-      response.status.should == 400
+      expect(response.status).to eq(400)
     end
     
     it "should return a 400 if the authentication represented by the X-API-Token can't be found" do
-      Api.stub(:permitted?).and_return(double(:status => 400, :body => {:_api_error => []}))
+      allow(Api).to receive(:permitted?).and_return(double(:status => 400, :body => {:_api_error => []}))
       request.headers['X-API-Token'] = 'unknown, matey'
       delete :destroy, from: 0, to: 100000000
-      response.status.should == 400
-      response.content_type.should == "application/json"
+      expect(response.status).to eq(400)
+      expect(response.content_type).to eq("application/json")
     end
 
     it "should return a 403 if the X-API-Token doesn't yield DELETE authorisation" do
-      Api.stub(:permitted?).and_return(double(:status => 403, :body => {:_api_error => []}))
+      allow(Api).to receive(:permitted?).and_return(double(:status => 403, :body => {:_api_error => []}))
       delete :destroy, from: 0, to: 100000000
-      response.status.should == 403
-      response.content_type.should == "application/json"
+      expect(response.status).to eq(403)
+      expect(response.content_type).to eq("application/json")
     end
         
     it "should return a 204 when successful" do
       delete :destroy, from: 0, to: 100000000
-      response.status.should == 204
-      response.content_type.should == "application/json"
+      expect(response.status).to eq(204)
+      expect(response.content_type).to eq("application/json")
     end
         
   end

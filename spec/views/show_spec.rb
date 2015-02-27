@@ -18,31 +18,31 @@ describe "log_excerpts/show" do
   
 
   it "has a named root" do
-    @u.should_not == nil
+    expect(@u).not_to eq(nil)
   end
 
 
   it "should have one hyperlink" do
-    @links.size.should == 1
+    expect(@links.size).to eq(1)
   end
 
   it "should have a self hyperlink" do
-    @links.should be_hyperlinked('self', /log_excerpts/)
+    expect(@links).to be_hyperlinked('self', /log_excerpts/)
   end
 
 
   it "should have a from attribute" do
-    @u['from'].should be_an Integer
+    expect(@u['from']).to be_an Integer
   end
 
   it "should have a to attribute" do
-    @u['to'].should be_an Integer
+    expect(@u['to']).to be_an Integer
   end
 
   it "should have an entries attribute consisting of strings" do
-    @u['entries'].should be_an Array
-    @u['entries'][0].should be_a String
-    @u['entries'].length.should == 3
+    expect(@u['entries']).to be_an Array
+    expect(@u['entries'][0]).to be_a String
+    expect(@u['entries'].length).to eq(3)
   end
 
 end
